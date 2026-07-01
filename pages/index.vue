@@ -1,52 +1,52 @@
 <template>
-  <div class="flex flex-col items-center justify-center space-y-16 py-20 relative">
-    <!-- Ambient Background Glow -->
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 w-full max-w-2xl h-[400px] bg-primary-500/10 dark:bg-primary-400/10 rounded-full blur-3xl pointer-events-none"></div>
-    
-    <div class="text-center max-w-3xl relative z-10">
-      <UBadge color="primary" variant="subtle" size="lg" class="mb-6 rounded-full px-4">v1.0.0 Ready</UBadge>
-      <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-6 bg-gradient-to-br from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent pb-2">
-        Unified <span class="text-primary-500 dark:text-primary-400">Credential</span> Management
+  <div class="flex flex-col items-center justify-center min-h-[calc(100vh-160px)] py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="text-center max-w-3xl mb-20 mt-8">
+      <div class="inline-flex items-center px-3 py-1 rounded-full border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 mb-8">
+        <span class="flex h-2 w-2 rounded-full bg-teal-500 mr-2"></span>
+        <span class="text-xs font-medium text-gray-600 dark:text-gray-300">v1.0.0 Production Ready</span>
+      </div>
+      
+      <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-8 text-gray-900 dark:text-white leading-[1.1]">
+        Unified <span class="text-teal-500">Credential</span> Management
       </h1>
-      <p class="text-xl text-gray-600 dark:text-gray-400">
-        Generate highly customizable passwords and usernames. Use our robust NPM package programmatically, or our beautiful online tool right here in the browser.
+      
+      <p class="text-xl md:text-2xl text-gray-500 dark:text-gray-400 font-light max-w-2xl mx-auto leading-relaxed">
+        Generate highly customizable passwords and usernames programmatically or visually.
       </p>
     </div>
 
-    <div class="grid md:grid-cols-2 gap-8 w-full max-w-4xl relative z-10">
-      <UCard class="hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10 dark:hover:shadow-primary/5 transition-all duration-300 bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm border border-gray-200/50 dark:border-gray-800/50 group">
-        <template #header>
-          <div class="flex items-center space-x-3">
-            <UIcon name="i-heroicons-code-bracket-square" class="w-8 h-8 text-primary" />
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">NPM Package</h2>
+    <div class="grid md:grid-cols-2 gap-8 w-full max-w-5xl">
+      <!-- NPM Package Card -->
+      <NuxtLink to="/package" class="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800/60 rounded-3xl p-8 overflow-hidden">
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-gray-50 dark:bg-gray-800 flex items-center justify-center mb-6">
+            <UIcon name="i-heroicons-code-bracket-square" class="w-6 h-6 text-gray-700 dark:text-gray-300" />
           </div>
-        </template>
-        <p class="text-gray-600 dark:text-gray-400 mb-6">
-          Integrate <code class="bg-gray-100 dark:bg-gray-800 px-1 rounded text-sm text-primary">unique-login-credential</code> directly into your TypeScript or JavaScript projects. Explore our official documentation and code snippets.
-        </p>
-        <template #footer>
-          <UButton to="/package" color="gray" variant="solid" size="lg" block>
-            View Documentation
-          </UButton>
-        </template>
-      </UCard>
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">NPM Package</h2>
+          <p class="text-gray-500 dark:text-gray-400 mb-8 leading-relaxed font-light">
+            Integrate <code class="text-sm font-medium text-teal-600 dark:text-teal-400 bg-teal-50 dark:bg-teal-900/20 px-1.5 py-0.5 rounded-md">unique-login-credential</code> directly into your projects. Explore our official documentation and snippets.
+          </p>
+          <div class="flex items-center text-teal-600 dark:text-teal-400 font-medium text-sm">
+            View Documentation <UIcon name="i-heroicons-arrow-right" class="w-4 h-4 ml-1" />
+          </div>
+        </div>
+      </NuxtLink>
 
-      <UCard class="hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10 dark:hover:shadow-primary/5 transition-all duration-300 bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm border border-gray-200/50 dark:border-gray-800/50 group">
-        <template #header>
-          <div class="flex items-center space-x-3">
-            <UIcon name="i-heroicons-key" class="w-8 h-8 text-primary" />
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Online Generator</h2>
+      <!-- Generator Card -->
+      <NuxtLink to="/generator" class="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800/60 rounded-3xl p-8 overflow-hidden">
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-gray-50 dark:bg-gray-800 flex items-center justify-center mb-6">
+            <UIcon name="i-heroicons-key" class="w-6 h-6 text-gray-700 dark:text-gray-300" />
           </div>
-        </template>
-        <p class="text-gray-600 dark:text-gray-400 mb-6">
-          Use our interactive, slot-based credential generator to manually craft secure passwords that meet your exact specifications.
-        </p>
-        <template #footer>
-          <UButton to="/generator" color="primary" variant="solid" size="lg" block>
-            Open Generator
-          </UButton>
-        </template>
-      </UCard>
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">Online Generator</h2>
+          <p class="text-gray-500 dark:text-gray-400 mb-8 leading-relaxed font-light">
+            Use our interactive, slot-based credential generator to manually craft secure passwords that meet your specifications.
+          </p>
+          <div class="flex items-center text-teal-600 dark:text-teal-400 font-medium text-sm">
+            Open Generator <UIcon name="i-heroicons-arrow-right" class="w-4 h-4 ml-1" />
+          </div>
+        </div>
+      </NuxtLink>
     </div>
   </div>
 </template>
