@@ -1,62 +1,101 @@
 <template>
-  <div class="max-w-3xl mx-auto py-8">
-    <UCard class="shadow-xl border border-gray-100">
-      <template #header>
-        <div class="text-center">
-          <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight">Password Generator</h1>
-          <p class="text-sm text-gray-500 mt-2">Customize each character slot to build your perfect password.</p>
-        </div>
-      </template>
+  <div class="max-w-2xl mx-auto py-12">
+    <div class="mb-8 text-center">
+      <h1 class="text-4xl font-extrabold text-gray-900 dark:text-white tracking-tight">Secure Generator</h1>
+      <p class="text-gray-500 dark:text-gray-400 mt-2">Create strong, customized passwords in a single click.</p>
+    </div>
 
-      <!-- Generator Configuration Area -->
-      <div class="space-y-6">
-        <div class="grid grid-cols-2 sm:grid-cols-5 gap-4">
-          <div v-for="(slot, index) in characterSlots" :key="index" class="flex flex-col items-center space-y-2 p-3 bg-[#FDFDFD] border border-gray-200 rounded-lg shadow-sm">
-            <!-- Output display for this specific character slot -->
-            <div class="w-10 h-12 flex items-center justify-center bg-gray-50 border border-gray-300 rounded font-mono text-xl font-bold text-[#8B6B43]">
-              {{ generatedPassword[index] || ' ' }}
-            </div>
-            <!-- Selection Dropdown -->
-            <USelect
-              v-model="slot.type"
-              :options="dropdownOptions"
-              class="w-full"
-              size="sm"
-            />
+    <UCard class="shadow-2xl border border-gray-100 dark:border-gray-800">
+      <!-- Output Area -->
+      <div class="relative group">
+        <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-6 flex flex-col md:flex-row items-center justify-between border border-gray-200 dark:border-gray-700 transition-colors">
+          <div class="flex-1 w-full overflow-hidden mb-4 md:mb-0 mr-0 md:mr-4 text-center md:text-left">
+            <span
+              class="font-mono text-3xl font-bold tracking-wider text-gray-900 dark:text-white break-all select-all transition-all duration-200"
+              :class="{ 'opacity-50 blur-[2px]': isGenerating }"
+            >
+              {{ generatedPassword || 'Click generate...' }}
+            </span>
+          </div>
+
+          <UButton
+            @click="copyOutput"
+            :disabled="!generatedPassword"
+            color="primary"
+            variant="solid"
+            icon="i-heroicons-clipboard-document-check"
+            size="xl"
+            class="flex-shrink-0 w-full md:w-auto justify-center"
+            aria-label="Copy to clipboard"
+          >
+            Copy
+          </UButton>
+        </div>
+      </div>
+
+      <!-- Controls Area -->
+      <div class="mt-10 space-y-8">
+        <!-- Length Slider -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <label class="text-sm font-semibold text-gray-700 dark:text-gray-300">Password Length</label>
+            <UBadge size="lg" color="gray" variant="solid">{{ options.length }}</UBadge>
+          </div>
+          <URange v-model="options.length" :min="8" :max="64" size="md" color="primary" />
+        </div>
+
+        <!-- Toggles -->
+        <div class="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-5 border border-gray-100 dark:border-gray-800">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <UFormGroup>
+              <div class="flex items-center justify-between">
+                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Uppercase Letters</span>
+                <UToggle v-model="options.uppercase" color="primary" />
+              </div>
+              <p class="text-xs text-gray-500 mt-1">A-Z</p>
+            </UFormGroup>
+
+            <UFormGroup>
+              <div class="flex items-center justify-between">
+                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Lowercase Letters</span>
+                <UToggle v-model="options.lowercase" color="primary" />
+              </div>
+              <p class="text-xs text-gray-500 mt-1">a-z</p>
+            </UFormGroup>
+
+            <UFormGroup>
+              <div class="flex items-center justify-between">
+                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Numbers</span>
+                <UToggle v-model="options.numbers" color="primary" />
+              </div>
+              <p class="text-xs text-gray-500 mt-1">0-9</p>
+            </UFormGroup>
+
+            <UFormGroup>
+              <div class="flex items-center justify-between">
+                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Symbols</span>
+                <UToggle v-model="options.symbols" color="primary" />
+              </div>
+              <p class="text-xs text-gray-500 mt-1">!@#$%^&*</p>
+            </UFormGroup>
           </div>
         </div>
       </div>
 
-      <!-- Action Area -->
+      <!-- Action Button -->
       <template #footer>
-        <div class="flex flex-col space-y-6">
+        <div class="pt-4">
           <UButton
             @click="generate"
             size="xl"
             block
-            class="bg-gray-900 hover:bg-gray-800 text-white font-bold transition-colors py-4 text-lg"
+            color="gray"
+            variant="solid"
+            class="font-bold py-4 text-lg bg-gray-900 hover:bg-gray-800 dark:bg-white dark:hover:bg-gray-100 dark:text-gray-900 text-white transition-colors"
+            icon="i-heroicons-arrow-path"
           >
-            GENERATE
+            GENERATE NEW PASSWORD
           </UButton>
-
-          <!-- Result Display -->
-          <div class="bg-gray-50 border border-gray-200 rounded-lg p-6 flex items-center justify-between shadow-inner">
-            <div class="flex-1 overflow-x-auto whitespace-nowrap mr-4">
-              <span class="text-xs font-semibold text-gray-400 uppercase tracking-widest block mb-1">Output</span>
-              <span class="font-mono text-2xl text-gray-800 font-medium">
-                {{ finalOutput || 'Click generate...' }}
-              </span>
-            </div>
-            <UButton
-              @click="copyOutput"
-              :disabled="!finalOutput"
-              color="white"
-              variant="solid"
-              icon="i-heroicons-clipboard-document-check"
-              class="flex-shrink-0"
-              size="lg"
-            />
-          </div>
         </div>
       </template>
     </UCard>
@@ -64,60 +103,72 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useCredentialGenerator } from '~/composables/useCredentialGenerator'
-import type { CharType } from '~/composables/useCredentialGenerator'
 
 useHead({
-  title: 'Online Generator | Credential Platform',
+  title: 'Secure Generator | Credential Platform',
   meta: [
-    { name: 'description', content: 'Generate passwords with granular control over every single character.' }
+    { name: 'description', content: 'Create strong, customized passwords in a single click.' }
   ]
 })
 
-const { generateCharacter } = useCredentialGenerator()
+const { uniquePassword } = useCredentialGenerator()
 
-type SlotOption = CharType | 'empty'
+const generatedPassword = ref('')
+const isGenerating = ref(false)
 
-interface Slot {
-  type: SlotOption
-}
-
-const dropdownOptions = [
-  { label: 'A-Z', value: 'capitalAlphabet' },
-  { label: 'a-z', value: 'smallAlphabet' },
-  { label: '0-9', value: 'number' },
-  { label: 'Special', value: 'specialCharacter' },
-  { label: '---', value: 'empty' },
-]
-
-// The 10 slots from the original `password-generator`
-const characterSlots = ref<Slot[]>([
-  { type: 'capitalAlphabet' },
-  { type: 'smallAlphabet' },
-  { type: 'smallAlphabet' },
-  { type: 'smallAlphabet' },
-  { type: 'number' },
-  { type: 'number' },
-  { type: 'specialCharacter' },
-  { type: 'specialCharacter' },
-  { type: 'empty' },
-  { type: 'empty' },
-])
-
-const generatedPassword = ref<string[]>([])
-
-const finalOutput = computed(() => generatedPassword.value.join(''))
+// State for the modern UI controls
+const options = ref({
+  length: 16,
+  uppercase: true,
+  lowercase: true,
+  numbers: true,
+  symbols: true
+})
 
 const generate = () => {
-  generatedPassword.value = characterSlots.value.map(slot => generateCharacter(slot.type))
+  // Prevent generation if no character types are selected
+  if (!options.value.uppercase && !options.value.lowercase && !options.value.numbers && !options.value.symbols) {
+    alert("Please select at least one character type.")
+    return
+  }
+
+  isGenerating.value = true
+
+  // Simulate a tiny delay for visual feedback
+  setTimeout(() => {
+    // Map boolean toggles to the numbers expected by uniquePassword
+    const config = {
+      length: options.value.length,
+      capitalLetter: options.value.uppercase ? 1 : 0,
+      smallLetter: options.value.lowercase ? 1 : 0,
+      number: options.value.numbers ? 1 : 0,
+      specialCharacter: options.value.symbols ? 1 : 0,
+      random: true // Always shuffle for security in this mode
+    }
+
+    try {
+      generatedPassword.value = uniquePassword(config)
+    } catch (error: any) {
+      alert(error.message)
+    } finally {
+      isGenerating.value = false
+    }
+  }, 150)
 }
 
 const copyOutput = () => {
-  if (finalOutput.value) {
-    navigator.clipboard.writeText(finalOutput.value).then(() => {
+  if (generatedPassword.value) {
+    navigator.clipboard.writeText(generatedPassword.value).then(() => {
+      // In a real app we'd use a toast notification
       alert('Password copied to clipboard!')
     })
   }
 }
+
+// Generate an initial password on mount
+onMounted(() => {
+  generate()
+})
 </script>

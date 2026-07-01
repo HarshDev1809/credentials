@@ -73,28 +73,32 @@ export const useCredentialGenerator = () => {
     }
 
     let choice: CharType[] = [];
+    const availableTypes: CharType[] = [];
 
     if (capitalLetter > 0) {
       choice.push(...getFilledArray("capitalAlphabet", capitalLetter));
+      availableTypes.push("capitalAlphabet");
     }
     if (smallLetter > 0) {
       choice.push(...getFilledArray("smallAlphabet", smallLetter));
+      availableTypes.push("smallAlphabet");
     }
     if (number > 0) {
       choice.push(...getFilledArray("number", number));
+      availableTypes.push("number");
     }
     if (specialCharacter > 0) {
       choice.push(...getFilledArray("specialCharacter", specialCharacter));
+      availableTypes.push("specialCharacter");
+    }
+
+    // Fallback if the user asks for 0 of everything but a length > 0
+    if (availableTypes.length === 0) {
+        availableTypes.push("capitalAlphabet", "smallAlphabet", "number", "specialCharacter");
     }
 
     while (choice.length < length) {
-      const types: CharType[] = [
-        "capitalAlphabet",
-        "smallAlphabet",
-        "number",
-        "specialCharacter",
-      ];
-      choice.push(types[Math.floor(Math.random() * types.length)]);
+      choice.push(availableTypes[Math.floor(Math.random() * availableTypes.length)]);
     }
 
     if (random) {
@@ -136,28 +140,32 @@ export const useCredentialGenerator = () => {
 
     let choice: CharType[] = [];
     let username = prefix;
+    const availableTypes: CharType[] = [];
 
     if (capitalLetter > 0) {
       choice.push(...getFilledArray("capitalAlphabet", capitalLetter));
+      availableTypes.push("capitalAlphabet");
     }
     if (smallLetter > 0) {
       choice.push(...getFilledArray("smallAlphabet", smallLetter));
+      availableTypes.push("smallAlphabet");
     }
     if (number > 0) {
       choice.push(...getFilledArray("number", number));
+      availableTypes.push("number");
     }
     if (specialCharacter > 0) {
       choice.push(...getFilledArray("specialCharacter", specialCharacter));
+      availableTypes.push("specialCharacter");
+    }
+
+    // Fallback if the user asks for 0 of everything but a length > 0
+    if (availableTypes.length === 0) {
+        availableTypes.push("capitalAlphabet", "smallAlphabet", "number", "specialCharacter");
     }
 
     while (choice.length < length - prefix.length) {
-      const types: CharType[] = [
-        "capitalAlphabet",
-        "smallAlphabet",
-        "number",
-        "specialCharacter",
-      ];
-      choice.push(types[Math.floor(Math.random() * types.length)]);
+      choice.push(availableTypes[Math.floor(Math.random() * availableTypes.length)]);
     }
 
     if (random) {
