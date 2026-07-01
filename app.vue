@@ -8,6 +8,6 @@
 
 <style>
 :root {
-  --ui-primary: var(--color-green-500);
+  --ui-primary: var(--color-teal-500);
 }
 </style>

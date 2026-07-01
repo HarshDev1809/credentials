@@ -5,13 +5,13 @@
         <h1 class="text-4xl font-extrabold text-gray-900 dark:text-white">unique-login-credential</h1>
         <UBadge color="primary" variant="subtle">NPM</UBadge>
       </div>
-      <p class="text-lg text-gray-600 dark:text-gray-400">
+      <p class="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
         A robust, type-safe library to generate unique passwords and usernames.
       </p>
 
-      <div class="bg-gray-50 dark:bg-black rounded-lg p-4 flex items-center justify-between border border-gray-200 dark:border-gray-800">
-        <code class="text-primary-600 dark:text-primary-400 text-sm font-mono">{{ installCommand }}</code>
-        <UButton color="gray" variant="ghost" icon="i-heroicons-clipboard-document" @click="copyCommand" aria-label="Copy install command" class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white" />
+      <div class="bg-gray-900 rounded-lg p-4 flex items-center justify-between shadow-inner border border-gray-800">
+        <code class="text-primary-400 text-sm font-mono">{{ installCommand }}</code>
+        <UButton color="gray" variant="ghost" icon="i-heroicons-clipboard-document" @click="copyCommand" aria-label="Copy install command" class="text-gray-400 hover:text-white" />
       </div>
     </div>
 
@@ -33,37 +33,37 @@
               </tr>
             </thead>
             <tbody class="divide-y divide-gray-200 dark:divide-gray-800 bg-white dark:bg-gray-900">
-              <tr>
+              <tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">length</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">number</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">8</td>
                 <td class="px-6 py-4 text-sm text-gray-500 dark:text-gray-400">Total length of the password.</td>
               </tr>
-              <tr>
+              <tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">capitalLetter</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">number</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">1</td>
                 <td class="px-6 py-4 text-sm text-gray-500 dark:text-gray-400">Minimum number of uppercase letters (A-Z).</td>
               </tr>
-              <tr>
+              <tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">smallLetter</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">number</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">3</td>
                 <td class="px-6 py-4 text-sm text-gray-500 dark:text-gray-400">Minimum number of lowercase letters (a-z).</td>
               </tr>
-              <tr>
+              <tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">number</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">number</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">2</td>
                 <td class="px-6 py-4 text-sm text-gray-500 dark:text-gray-400">Minimum number of digits (0-9).</td>
               </tr>
-              <tr>
+              <tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">specialCharacter</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">number</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">2</td>
                 <td class="px-6 py-4 text-sm text-gray-500 dark:text-gray-400">Minimum number of special characters (!@#$_*).</td>
               </tr>
-              <tr>
+              <tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">random</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">boolean</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">false</td>
@@ -73,8 +73,8 @@
           </table>
         </UCard>
 
-        <div class="bg-gray-50 dark:bg-black border border-gray-200 dark:border-gray-800 rounded-lg p-4 overflow-x-auto">
-<pre><code class="language-typescript text-gray-800 dark:text-gray-300 text-sm">import { uniquePassword } from 'unique-login-credential';
+        <div class="bg-gray-900 border border-gray-800 rounded-lg p-4 overflow-x-auto shadow-inner">
+<pre><code class="language-typescript text-gray-300 text-sm">import { uniquePassword } from 'unique-login-credential';
 
 // Default configuration
 const defaultPwd = uniquePassword();
@@ -108,19 +108,19 @@ console.log(customPwd);</code></pre>
               </tr>
             </thead>
             <tbody class="divide-y divide-gray-200 dark:divide-gray-800 bg-white dark:bg-gray-900">
-              <tr>
+              <tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">prefix</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">string</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">""</td>
                 <td class="px-6 py-4 text-sm text-gray-500 dark:text-gray-400">The fixed string to prepend to the generated username.</td>
               </tr>
-              <tr>
+              <tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">length</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">number</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">6</td>
                 <td class="px-6 py-4 text-sm text-gray-500 dark:text-gray-400">Total length of the username (including prefix).</td>
               </tr>
-              <tr>
+              <tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                 <td colspan="4" class="px-6 py-4 text-sm text-gray-500 dark:text-gray-400 italic bg-gray-50 dark:bg-gray-900/50 text-center">
                   Also accepts all configuration options from uniquePassword (capitalLetter, smallLetter, etc.)
                 </td>
@@ -129,8 +129,8 @@ console.log(customPwd);</code></pre>
           </table>
         </UCard>
 
-        <div class="bg-gray-50 dark:bg-black border border-gray-200 dark:border-gray-800 rounded-lg p-4 overflow-x-auto">
-<pre><code class="language-typescript text-gray-800 dark:text-gray-300 text-sm">import { uniqueUsername } from 'unique-login-credential';
+        <div class="bg-gray-900 border border-gray-800 rounded-lg p-4 overflow-x-auto shadow-inner">
+<pre><code class="language-typescript text-gray-300 text-sm">import { uniqueUsername } from 'unique-login-credential';
 
 // Using a prefix
 const user1 = uniqueUsername({

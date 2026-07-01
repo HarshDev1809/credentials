@@ -5,10 +5,10 @@
       <p class="text-gray-500 dark:text-gray-400 mt-2">Create strong, customized passwords in a single click.</p>
     </div>
 
-    <UCard class="shadow-2xl border border-gray-100 dark:border-gray-800">
+    <UCard class="shadow-2xl shadow-primary/5 border border-gray-200/50 dark:border-gray-800/50 bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl">
       <!-- Output Area -->
       <div class="relative group">
-        <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-6 flex flex-col md:flex-row items-center justify-between border border-gray-200 dark:border-gray-700 transition-colors">
+        <div class="bg-gray-50/80 dark:bg-black/50 rounded-xl p-6 flex flex-col md:flex-row items-center justify-between border border-gray-200/50 dark:border-gray-700/50 shadow-inner backdrop-blur-sm transition-all duration-300 hover:ring-1 hover:ring-primary/50">
           <div class="flex-1 w-full overflow-hidden mb-4 md:mb-0 mr-0 md:mr-4 text-center md:text-left">
             <span
               class="font-mono text-3xl font-bold tracking-wider text-gray-900 dark:text-white break-all select-all transition-all duration-200"
@@ -45,7 +45,7 @@
         </div>
 
         <!-- Toggles -->
-        <div class="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-5 border border-gray-100 dark:border-gray-800">
+        <div class="bg-white/50 dark:bg-gray-800/30 rounded-xl p-5 border border-gray-200/50 dark:border-gray-700/50 shadow-sm backdrop-blur-sm">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <UFormGroup>
               <div class="flex items-center justify-between">
@@ -89,9 +89,9 @@
             @click="generate"
             size="xl"
             block
-            color="gray"
+            color="primary"
             variant="solid"
-            class="font-bold py-4 text-lg bg-gray-900 hover:bg-gray-800 dark:bg-white dark:hover:bg-gray-100 dark:text-gray-900 text-white transition-colors"
+            class="font-bold py-4 text-lg shadow-xl shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-0.5 transition-all duration-300"
             icon="i-heroicons-arrow-path"
           >
             GENERATE NEW PASSWORD
