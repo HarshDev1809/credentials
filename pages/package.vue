@@ -9,9 +9,9 @@
         A robust, type-safe library to generate unique passwords and usernames.
       </p>
 
-      <div class="bg-gray-900 dark:bg-black rounded-lg p-4 flex items-center justify-between border border-gray-800">
-        <code class="text-primary-400 text-sm font-mono">npm install unique-login-credential</code>
-        <UButton color="gray" variant="ghost" icon="i-heroicons-clipboard-document" @click="copyCommand" aria-label="Copy install command" class="text-gray-400 hover:text-white" />
+      <div class="bg-gray-50 dark:bg-black rounded-lg p-4 flex items-center justify-between border border-gray-200 dark:border-gray-800">
+        <code class="text-primary-600 dark:text-primary-400 text-sm font-mono">{{ installCommand }}</code>
+        <UButton color="gray" variant="ghost" icon="i-heroicons-clipboard-document" @click="copyCommand" aria-label="Copy install command" class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white" />
       </div>
     </div>
 
@@ -73,8 +73,8 @@
           </table>
         </UCard>
 
-        <div class="bg-gray-900 dark:bg-black border border-gray-800 rounded-lg p-4 overflow-x-auto">
-<pre><code class="language-typescript text-gray-300 text-sm">import { uniquePassword } from 'unique-login-credential';
+        <div class="bg-gray-50 dark:bg-black border border-gray-200 dark:border-gray-800 rounded-lg p-4 overflow-x-auto">
+<pre><code class="language-typescript text-gray-800 dark:text-gray-300 text-sm">import { uniquePassword } from 'unique-login-credential';
 
 // Default configuration
 const defaultPwd = uniquePassword();
@@ -129,8 +129,8 @@ console.log(customPwd);</code></pre>
           </table>
         </UCard>
 
-        <div class="bg-gray-900 dark:bg-black border border-gray-800 rounded-lg p-4 overflow-x-auto">
-<pre><code class="language-typescript text-gray-300 text-sm">import { uniqueUsername } from 'unique-login-credential';
+        <div class="bg-gray-50 dark:bg-black border border-gray-200 dark:border-gray-800 rounded-lg p-4 overflow-x-auto">
+<pre><code class="language-typescript text-gray-800 dark:text-gray-300 text-sm">import { uniqueUsername } from 'unique-login-credential';
 
 // Using a prefix
 const user1 = uniqueUsername({
@@ -146,15 +146,20 @@ console.log(user1); // e.g. "admin_2hA9k"</code></pre>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+
+const packageName = ref('unique-login-credential')
+const installCommand = ref(`npm install ${packageName.value}`)
+
 useHead({
   title: 'NPM Package Documentation | Credential Platform',
   meta: [
-    { name: 'description', content: 'Official documentation for unique-login-credential npm package.' }
+    { name: 'description', content: `Official documentation for ${packageName.value} npm package.` }
   ]
 })
 
 const copyCommand = () => {
-  navigator.clipboard.writeText('npm install unique-login-credential')
+  navigator.clipboard.writeText(installCommand.value)
     .then(() => {
       alert('Command copied to clipboard!');
     })
