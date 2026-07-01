@@ -7,6 +7,7 @@
 </template>
 
 <style>
+@reference "tailwindcss";
 :root {
   --ui-primary: var(--color-teal-500);
 }
